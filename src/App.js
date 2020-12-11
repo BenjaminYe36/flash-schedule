@@ -73,6 +73,7 @@ export default class App extends Component {
 
   /**
    * Receives possible schedule information and stores it into the schedules array
+   * Receives selected courses information and stores it into the selectedCourse array
    */
   componentDidMount() {
     this.getSchedules();
@@ -80,7 +81,7 @@ export default class App extends Component {
   }
 
   getSchedules() {
-    axios(`/schedules`)
+    axios(`https://flash-schedule-back-end.herokuapp.com/schedules`)
       .then(res => {
         console.log(res.data);
         this.setState({
@@ -90,7 +91,7 @@ export default class App extends Component {
   }
 
   getSelectedCourses() {
-    axios(`/selectedCourses`)
+    axios(`https://flash-schedule-back-end.herokuapp.com/selectedCourses`)
       .then(res => {
         console.log(res.data);
         this.setState({
@@ -100,7 +101,7 @@ export default class App extends Component {
   }
 
   addCourse() {
-    axios(`/addCourse=` + this.state.inputClass)
+    axios(`https://flash-schedule-back-end.herokuapp.com/addCourse=` + this.state.inputClass)
       .then(res => {
         console.log(res.data.success);
         if (!res.data.success) {
@@ -113,7 +114,7 @@ export default class App extends Component {
 
   removeCourse(course) {
     console.log(course);
-    axios(`/removeCourse=` + course)
+    axios(`https://flash-schedule-back-end.herokuapp.com/removeCourse=` + course)
       .then(res => {
         console.log(res.data.success);
         if (!res.data.success) {
@@ -278,6 +279,7 @@ export default class App extends Component {
       </Menu>
     )
 
+    /** Displays the add course "input box" and "Add" button on the top right corner*/
     var courseInput = (
       <div style={{marginTop: '-15px'}}>
         <Input placeholder="CSE143A/CSE143AA" onChange={this.inputHandler} style={{ width: '180px', height: '35px' }} />
@@ -285,6 +287,7 @@ export default class App extends Component {
       </div>
     )
 
+    /** Displays a list of selected courses on the right under the input box */
     var selectedCourses = (
       <div>
         <p style={{ fontSize: '20px', marginLeft: '2px' }}>Selected Courses</p>
