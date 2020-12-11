@@ -45,7 +45,7 @@ export default class TimeTable extends Component {
             var time2 = 'December 7, 2020 ' + classTime.lectureTo
             var Date2 = new Date(time2)
             var Height = ((Date2.getHours() - Date1.getHours()) * 60 + Date2.getMinutes() - Date1.getMinutes()) * 0.92485 + 'px'
-            var Top = (Date1.getHours() - 8) * 27.7455 * 2 + (Date1.getMinutes() - 30) / 30 * 27.7455 - 555.5 + 'px'
+            var Top = (Date1.getHours() - 8) * 27.85 * 2 + (Date1.getMinutes() - 30) / 30 * 27.7455 - 671 + 'px'
 
             if (classTime.days.match(/M/)) {
                 list.push({ left: '151px', top: Top, height: Height, title: this.props.classes[index] });
